@@ -1,6 +1,7 @@
 # juno
 
 ![Code Climate](https://codeclimate.com/github/surovv/kleisli/badges/gpa.svg)
+![](https://img.shields.io/badge/build-passing-brightgreen)
 
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com)
 ![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)
