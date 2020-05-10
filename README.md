@@ -5,4 +5,7 @@
 ![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)
 
 
-A little functional, imperative language. Built on top of JS. Very smooth!
+A little functional, imperative language. Built on top of JS. Very smooth
+
+Written for educational experiences. I’ve used less than 650 lines of artesian,
+Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :)
