@@ -41,6 +41,61 @@ from 1 to 3 with c:
   print(a, b, c)
 :::
 ```
+Classes:
+```js
+@implementation : CPObject:
+    from 1 to 3 with a:
+    from 1 to 3 with b:
+    from 1 to 3 with c:
+        print(a, b, c)
+::::
+```
+
+Classes don’t work currently. I’ll fix it as fast as possible.
+
+Functions: (contain pipeline return assigns.
+
+```js
+func greet(str a) :
+   str a = null
+   |> "Hello"
+   |> a
+:
+
+greet("Hy")
+```
+
+Comments
+
+```js
+// this is a line comment
+//...some code here...
+/* this
+is
+a 
+multiline comment */
+```
+
+In development
+
+- superclasses
+- Nil keyword
+- First order funcs 
+- Imports
+- Multithreading
+- NSLog
+- Printf function
+- Object initializations
+- Inheritance and Metaprogtamming
+
+Future:
+
+- IDE
+- Better vm//probably bytecode interpreted
+- Atom support 
+- REPL
+
+
 
 
 Work in progress...
