@@ -9,7 +9,9 @@
 
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com)
 ![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)
-  
+[![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](http://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/does-not-contain-treenuts.svg)](http://forthebadge.com)
+
   </div>
   
 A little functional, imperative language. Built on top of JS. Very smooth
