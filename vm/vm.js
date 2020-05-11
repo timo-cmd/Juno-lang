@@ -12,7 +12,7 @@ Copyright 2020 Timo Sarkar
 let memory = {
     print: {
         isNative: true,
-        type: 'fn',
+        type: 'func',
         name:'print',
         params: [],
         body: (params) => {
@@ -35,7 +35,7 @@ let memory = {
     },
     push:{
         isNative: true,
-        type: 'fn',
+        type: 'func',
         name:'push',
         params: [],
         body: (params) => {
@@ -52,7 +52,7 @@ let memory = {
     },
     index:{
         isNative: true,
-        type: 'fn',
+        type: 'func',
         name:'index',
         params: [],
         body: (params) => {
@@ -136,7 +136,7 @@ switch(returnType) {
         break;
     case "array":
         returnValue = [];
-        let conditionalKeywords = ["if", "elsif", "else"],
+        let conditionalKeywords = ["if", "elif", "else"],
             isLoopKeywords = ["from"],
             wrapperCounter = 0,
             conditionalKeywordCounter = 0,
@@ -171,7 +171,7 @@ switch(returnType) {
         break;
     case "array":
         returnValue = [];
-        let conditionalKeywords = ["if", "elsif", "else"],
+        let conditionalKeywords = ["if", "elif", "else"],
             isLoopKeywords = ["from"],
             wrapperCounter = 0,
             conditionalKeywordCounter = 0,
@@ -236,15 +236,23 @@ return arrToReturn;
 /* KEYWORD METHODS */
 
 Interpreter.prototype.isFunctionKeyword = function() {
-return this.peek() === "fn";
+return this.peek() === "func";
 };
 
+Interpreter.prototype.isCommentKeyword = function() {
+    return this.peek() === "//";
+    };
+
+Interpreter.prototype.isClassKeyword = function() {
+    return this.peek() === "@implement";
+    };
+
 Interpreter.prototype.isVariableKeyword = function() {
-return ["fn", "num", "str", "arr", "bool"].includes(this.peek());
+return ["func", "int64", "str", "arr", "bool", "@implement"].includes(this.peek());
 };
 
 Interpreter.prototype.isConditionalKeyword = function() {
-return ["if", "elsif", "else"].includes(this.peek());
+return ["if", "elif", "else"].includes(this.peek());
 };
 
 Interpreter.prototype.isLoopKeyword = function() {
@@ -306,7 +314,7 @@ return this.peek() === ")";
 };
 
 Interpreter.prototype.isReturnOperator = function() {
-return this.peek() === "=>";
+return this.peek() === "|>";
 };
 
 /* PRIMITIVE TYPE METHODS */
@@ -373,14 +381,14 @@ let otherInterpreter = new Interpreter(this.memory);
 let bodyToParse = currentFunction.body.slice(0);
 for (let j = 0; j < currentArguments.length; j++) {
     let currentArgument;
-    if (this.getVariable(currentArguments[j]) && this.getVariable(currentArguments[j]).type === "fn") {
+    if (this.getVariable(currentArguments[j]) && this.getVariable(currentArguments[j]).type === "func") {
         currentArgument = currentArguments[j];
     } else {
         currentArgument = otherInterpreter.input(currentArguments[j]) || currentArguments[j];
     }
     let parameterToReplace = currentFunction.params[j].name;
     switch(currentFunction.params[j].type) {
-        case "num":
+        case "int64":
             if (typeof parseFloat(currentArgument) !== "number" || isNaN(parseFloat(currentArgument))) throw new Error("Functions should only be called with parameters of the correct type!");
             break;
         case "str":
@@ -389,8 +397,11 @@ for (let j = 0; j < currentArguments.length; j++) {
         case "bool":
             if (currentArgument !== "true" && currentArgument !== "false") throw new Error("Functions should only be called with parameters of the correct type!");
             break;
-        case "fn":
-            if (!this.getVariable(currentArgument) || this.getVariable(currentArgument).type !== "fn") throw new Error("Functions should only be called with parameters of the correct type!");
+        case "func":
+            if (!this.getVariable(currentArgument) || this.getVariable(currentArgument).type !== "func") throw new Error("Functions should only be called with parameters of the correct type!");
+            break;
+        case "@implement":
+            if (!this.getVariable(currentArgument) || this.getVariable(currentArgument).type !== "@implement") throw new Error("Classes should only be called with parameters of the correct type!");
             break;
         case "arr":
             break;
@@ -444,9 +455,10 @@ if (factorResult) {
     let variable = this.getVariable(factorResult);
     if (variable) {
         switch(variable.type) {
-            case "fn":
+            case "func":
                 return this.functionCall(variable);
                 break;
+            
             default:
                 return variable.body;
                 break;
@@ -500,10 +512,10 @@ Interpreter.prototype.functionDeclaration = function() {
 if (!this.isOpeningParen()) throw new Error("A function's parameters should always be wrapped in parentheses!");
 this.get();
 let functionParameters = this.consumeUntil(")", "array");
-let validParameterTypes = ["fn", "num", "str", "arr", "bool"];
+let validParameterTypes = ["func", "int64", "str", "arr", "bool", "@implement"];
 for (let i = 0; i < functionParameters.length; i++) {
     let currentElement = functionParameters[i];
-    if (i % 3 === 0 && !["fn", "num", "str", "arr", "bool"].includes(currentElement)) {
+    if (i % 3 === 0 && !["func", "int64", "str", "arr", "bool", "@implement"].includes(currentElement)) {
         throw new Error("All function parameters must have valid types!");
     } else if (i % 3 === 1) {
         //
@@ -529,6 +541,41 @@ this.get();
 return [actualFunctionParameters, functionBody];
 };
 
+Interpreter.prototype.classDeclaration = function() {
+    if (!this.isOpeningParen()) throw new Error("A class's parameters should always be wrapped in parentheses!");
+    this.get();
+    let classParameters = this.consumeUntil(")", "array");
+    let validParameterclassTypes = ["func", "int64", "str", "arr", "bool", "@implement"];
+    for (let i = 0; i < classParameters.length; i++) {
+        let currentElement = classParameters[i];
+        if (i % 3 === 0 && !["func", "int64", "str", "arr", "bool", "@implement"].includes(currentElement)) {
+            throw new Error("All class parameters must have valid types!");
+        } else if (i % 3 === 1) {
+            //
+        } else if (i % 3 === 2 && currentElement !== ",") {
+            throw new Error("All class parameters must be separated by commas!");
+        }
+    }
+    classParameters = classParameters.filter(element => element !== ",");
+    let actualClassParameters = [];
+    for (let j = 1; j < classParameters.length; j += 2) {
+        actualClassParameters.push({
+            type: classParameters[j - 1],
+            name: classParameters[j]
+        })
+    }
+    if (!this.isClosingParen()) throw new Error("A class's parameters should always be wrapped in parentheses!");
+    this.get();
+    if (!this.isWrapper()) throw new Error("A class declaration requires an opening wrapper!");
+    this.get();
+    let classBody = this.consumeUntilFunctionWrapper(":", "array");
+    if (!this.isWrapper()) throw new Error("A class declaration requires a closing wrapper!");
+    this.get();
+    return [actualClassParameters, classBody];
+    };
+    
+
+
 Interpreter.prototype.variableDeclaration = function() {
 let variableType = this.get(),
     variableName = this.getIdentifier(),
@@ -537,14 +584,19 @@ let variableType = this.get(),
 if (!this.isAssignmentOperator()) throw new Error("A variable declaration requires a valid assignment operator!");
 this.get();
 switch (variableType) {
-    case "fn":
+    case "func":
         let functionInformation = this.functionDeclaration();
         variableParams = functionInformation[0];
         variableBody = functionInformation[1];
         break;
-    case "num":
+    case "@implement":
+        let classInformation = this.functionDeclaration();
+        variableParams = classInformation[0];
+        variableBody = classInformation[1];
+        break;
+    case "int64":
         variableBody = this.expression();
-        if (typeof variableBody !== "number") throw new Error("The 'num' type requires a valid number!");
+        if (typeof variableBody !== "number") throw new Error("The 'int64' type requires a valid number!");
         break;
     case "str":
         variableBody = this.expression();
@@ -590,7 +642,7 @@ if (this.getConditionalKeyword() !== "if") {
                 if (!this.isWrapper()) throw new Error("A conditional statement requires a closing wrapper!");
                 this.get();
                 break;
-            } else if (this.getConditionalKeyword() === "elsif") {
+            } else if (this.getConditionalKeyword() === "elif") {
                 this.get();
                 condition = this.comparison();
             } else {
@@ -683,9 +735,71 @@ let juno = new Interpreter(memory)
 // variables are stored in memory.
 
 juno.input(`
- 	from 1 to 3 with i :
- 	from 1 to 3 with j :
- 	from 1 to 3 with k :
- 		print(i, j, k)
- 	:::
+
+from 0 to 6 with i :
+	int64 currentIndexValue = index(array, i)
+    print(currentIndexValue)
+:
 `)
+
+/*
+
+* Basic control flow
+
+if 3 == 5 :
+    print("First!")
+:
+elif echo(one) == 1 :
+    print("Second!")
+: 
+else :
+    print("Third!")
+:
+
+* Basic nested loops
+
+ from 1 to 4 with a:
+ from 1 to 4 with b:
+ from 1 to 4 with c:
+    print(a, b, c)
+ :::
+
+
+* FizzBuzz
+
+func fizzBuzz = (num n) :
+    from 1 to n with i :
+		if i % 15 == 0 :
+			print("FizzBuzz")
+        : 
+        elif i % 5 == 0 :
+			print("Buzz")
+        : 
+        elif i % 3 == 0 :
+			print("Fizz")
+        : 
+        else :
+			print(i)
+        :
+::
+
+* Operations
+
+func alwaysTwo = (num n) :
+        => ((((n + 47 % 
+            (19 * add(-3, 5))) 
+            * echo(three - one) - 4) 
+            /fib(4) - n + fib(echo(10)) - 29) 
+            * 3 - 9) / 3 
+            - (((n + 109 % 10) 
+            * 2 - 4) / 2 - n)
+:
+
+alwaysTwo(4751)
+
+* Builtins
+
+
+:
+
+*/
