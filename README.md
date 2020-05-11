@@ -13,5 +13,5 @@ Written for educational experiences. I’ve used less than 650 lines of artesian
 Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/carbon(2).png"></img>
+  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/carbon(3).png"></img>
   </div>
