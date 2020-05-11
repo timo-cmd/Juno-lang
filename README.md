@@ -13,14 +13,14 @@
 
   </div>
   
-A little functional, imperative language. Built on top of JS. Very smooth
+A little dynamic, class-based programming language. Built on top of JS. Very smooth.
 
 Written for educational experiences. I’ve used less than 650 lines of artesian,
 Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :). Juno is a dynamic, declerative and functional programming language. I've designed it to provide the best simplicity, but also the most efficiency for dynamic programming. 
 
 ### Syntax
 
-Juno's syntax is inspired by python, scala and by Objective-C. I've chosen those syntaxes because they match the requirements for dynamic languages. Juno is implemented in less than 660 Lines of JavaScript. This mustn't mean, it isn't powerful... Juno coveres a huge environment and concepts such: control flow, generic variable assigns, recursive functions, first-order functions, classes, superclasses, a multi-threading system and much more... I'll take you on a little trip for exploring it's syntax.
+Juno's syntax is inspired by python, scala and by Objective-C. Think a python-syntax, that is class-based(like scala) and that is finally wrapped up by an objective-c syntax. Really accurate! I've chosen those syntaxes because they match the requirements for dynamic languages. Juno is implemented in less than 660 Lines of JavaScript. This mustn't mean, it isn't powerful... Juno coveres a huge environment and concepts such: control flow, generic variable assigns, recursive functions, first-order functions, classes, superclasses, a multi-threading system and much more... I'll take you on a little trip for exploring it's syntax.
 
 #### Basics:
 
@@ -43,6 +43,6 @@ from 1 to 3 with c:
 ```
 
 
+Work in progress...
 
-
-  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/carbon(6).png"></img>
+Built by Timo Sarkar, during a rainy, boring week.
