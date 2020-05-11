@@ -5,6 +5,8 @@ Copyright 2020 Timo Sarkar
 
 
 */
+
+
 // MEMORY SET-UP WITH SOME NATIVE FUNCTIONS
 
 let memory = {
