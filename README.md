@@ -11,3 +11,7 @@ A little functional, imperative language. Built on top of JS. Very smooth
 
 Written for educational experiences. I’ve used less than 650 lines of artesian,
 Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :)
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/carbon(1).png"></img>
+  </div>
