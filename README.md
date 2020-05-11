@@ -1,7 +1,7 @@
 
-  # Juno
 
 <div align="center">
+  <p>Juno</p>
   
 ![Code Climate](https://codeclimate.com/github/surovv/kleisli/badges/gpa.svg)
 ![](https://img.shields.io/badge/build-passing-brightgreen)
