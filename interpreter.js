@@ -684,10 +684,8 @@ let juno = new Interpreter(memory)
 
 juno.input(`
  	from 1 to 3 with i :
- 		from 1 to 3 with j :
- 			from 1 to 3 with k :
- 				print(i, j, k)
- 			:
- 		:
- 	:
+ 	from 1 to 3 with j :
+ 	from 1 to 3 with k :
+ 		print(i, j, k)
+ 	:::
 `)
