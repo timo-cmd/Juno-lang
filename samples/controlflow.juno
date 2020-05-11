@@ -1,0 +1,7 @@
+if 3 == 5 :
+    print("First!")
+:elif echo(one) == 1 :
+    print("Second!")
+:else :
+    print("Third!")
+:
