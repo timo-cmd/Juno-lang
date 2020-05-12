@@ -16,7 +16,7 @@
 A little dynamic, class-based programming language. Built on top of JS. Very smooth.
 
 Written for educational experiences. I’ve used less than 650 lines of artesian,
-Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :). Juno is a dynamic, declerative and functional programming language. I've designed it to provide the best simplicity, but also the most efficiency for dynamic programming. 
+Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :). Objective - Juno (Called  Juno) is a dynamic, declerative and functional programming language. I've designed it to provide the best simplicity, but also the most efficiency for dynamic programming. 
 
 ### Syntax
 
