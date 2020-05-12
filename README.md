@@ -1,7 +1,7 @@
 
 
 <div align="center">
-  <p>The Juno language</p>
+  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/objs.png" height=" "></img>
   
 ![Code Climate](https://codeclimate.com/github/surovv/kleisli/badges/gpa.svg)
 ![](https://img.shields.io/badge/build-passing-brightgreen)
