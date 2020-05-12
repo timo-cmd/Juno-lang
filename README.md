@@ -56,13 +56,13 @@ Classes don’t work currently. I’ll fix it as fast as possible.
 Functions: (contain pipeline return assigns.
 
 ```js
-func greet(str a) :
-   str a = null
-   |> "Hello"
-   |> a
-:
+private void func greet(name):
+  str name = null
+  if name != null:
+    print("Hello " + name)
+::
 
-greet("Hy")
+greet(John)
 ```
 
 Comments
@@ -75,6 +75,7 @@ is
 a 
 multiline comment */
 ```
+
 
 In development
 
