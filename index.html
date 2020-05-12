@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +10,7 @@
   <meta name="description" content="Little Lisp is an interpreter that supports function invocation, lambdas, lets, ifs, numbers, strings, a few library functions, and lists. I wrote it for a l...">
 
   <link rel="stylesheet" href="/css/blog.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@1&display=swap" rel="stylesheet">
 <style>
 * {
   padding:0;
@@ -40,7 +40,7 @@ a {
 }
 
 code {
-  font-family: courier;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.80em;
   padding: 4px 4px 0 4px;
   background-color: #eee;
@@ -49,14 +49,12 @@ code {
 }
 
 pre {
-  border-top:1px solid #bbb;
-  border-bottom:1px solid #bbb;
   padding-left:-50px;
   margin-bottom:17px;
   margin-top: 15px;
   padding: 1.25em 0 1.1em 0;
-  overflow: scroll;
-  font-family: courier;
+  overflow: hidden;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8em;
   line-height: 1.4em;
 }
@@ -64,7 +62,9 @@ pre {
 pre code {
   font-size: inherit;
   padding: 0;
-  background-color: #fff;
+  background-color: transparent;
+  resize: none;
+    overflow: hidden;
   color: #333;
   word-wrap: normal;
 }
@@ -455,7 +455,107 @@ sup a:hover {
 }
 
 </style>
+<style>
 
+
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 2em;
+  color: #abb2bf;
+  background: #282c34;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+</style>
 
   <link rel="canonical" href="https://maryrosecook.com/blog/post/little-lisp-interpreter">
   <link rel="alternate" type="application/rss+xml" title="Mary Rose Cook" href="https://maryrosecook.com/blog/feed.xml" />
@@ -492,8 +592,17 @@ sup a:hover {
 
 <p>As a little beginning, we'll try to print Hello, world! to the screen. Here's the code: </p>
 
-<div class="language-clojure highlighter-rouge"><pre class="highlight"><code><span class="mi">printf("Hello, world!")</span><span class="w">
-</span></code></pre>
+<pre><code class="javascript hljs">print(<span class="hljs-string">"Hello, world!"</span>)
+</code></pre>
+
+<p>As we see it implements the common "print" builtin. Pretty simple. <br></br>
+And now let's go ahead with variables.:</p>
+<pre><code class="javascript hljs"><span class="hljs-keyword">int64</span> a = <span class="hljs-number">20</span>
+<span class="hljs-keyword">str</span> b = <span class="hljs-string">"Hello dear..."</span>
+<span class="hljs-keyword">arr</span> c = [<span class="hljs-number">a, b, c</span>]
+</code></pre>
+
+<p>Really nice, we've got an 64-bit integer, a string and a little array. Variables are alway declared with their type and value. </p>
 </div>
 
   </div>
@@ -512,6 +621,7 @@ sup a:hover {
 
   ga('create', 'UA-24453347-1', 'auto');
   ga('send', 'pageview');
+
 </script>
 
 
