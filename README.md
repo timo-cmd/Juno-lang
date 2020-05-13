@@ -1,7 +1,6 @@
 
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/timo-cmd/Juno-lang/master/assets/objs.png" height=" "></img>
   
 ![Code Climate](https://codeclimate.com/github/surovv/kleisli/badges/gpa.svg)
 ![](https://img.shields.io/badge/build-passing-brightgreen)
@@ -16,7 +15,7 @@
 A little dynamic, class-based programming language. Built on top of JS. Very smooth.
 
 Written for educational experiences. I’ve used less than 650 lines of artesian,
-Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :). Objective - Juno (Called  Juno) is a dynamic, declerative and functional programming language. I've designed it to provide the best simplicity, but also the most efficiency for dynamic programming. 
+Handcrafted, JavaScript code. I’ve implemented it during a boring, rainy week. :). Juno is a dynamic, declerative and functional programming language. I've designed it to provide the best simplicity, but also the most efficiency for dynamic programming. 
 
 ### Syntax
 
