@@ -733,14 +733,34 @@ let juno = new Interpreter(memory)
 // BASIC VARIABLE DECLARATION
 // Running "juno.memory" will show that the newly-declared
 // variables are stored in memory.
+var start = new Date()
+
 
 juno.input(`
 
-from 0 to 6 with i :
-	int64 currentIndexValue = index(array, i)
-    print(currentIndexValue)
-:
+func fib = (int64 n) :
+	if n == 1 :
+	|> 0
+	: elif n == 2 :
+	|> 1
+	: else :
+	|> fib(n - 1) + fib(n - 2)
+::
+
+from 1 to 15 with i :
+		print(i, fib(i))
+	:
+
 `)
+
+setTimeout(function(argument) {
+  // execution time simulated with setTimeout function
+  var end = new Date() - start
+  console.log('_____________________')
+  console.info('Elapsed time: %dms', end)
+  console.log('_____________________')
+
+})
 
 /*
 
